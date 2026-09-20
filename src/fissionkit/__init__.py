@@ -1,6 +1,6 @@
 """fissionkit: data fission and data thinning for valid statistics after selection.
 
-Implements the splitting recipes of Leiner et al. (JASA 2023, data fission),
+Implements the splitting recipes of Leiner et al. (JASA 2025, data fission),
 Neufeld et al. (JMLR 2024, data thinning) and Dharamshi et al. (JASA 2025,
 generalized data thinning), together with applied workflows for cluster
 validation, rank selection, reference-free denoiser evaluation and

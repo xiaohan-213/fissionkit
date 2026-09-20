@@ -1,4 +1,4 @@
-"""Data fission (Leiner, Duan, Wasserman & Ramdas, JASA 2023).
+"""Data fission (Leiner, Duan, Wasserman & Ramdas, JASA 2025).
 
 Fission splits a single observation X into two parts f(X) and g(X) such that
 either the two parts are independent (Gaussian case, with externally generated
