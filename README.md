@@ -25,13 +25,15 @@ four ready-to-run applied workflows.
 
 ## Install
 
+fissionkit is installed from this repository (pip needs `git` on the PATH):
+
 ```bash
-# PyPI release accompanies the software publication; until then, from source:
-pip install "fissionkit[recipes] @ git+https://github.com/xiaohan-213/fissionkit"
-# after the PyPI release:
-pip install fissionkit            # core: numpy + scipy only
-pip install "fissionkit[recipes]" # + scikit-learn for the applied recipes
+pip install "fissionkit @ git+https://github.com/xiaohan-213/fissionkit"            # core: numpy + scipy only
+pip install "fissionkit[recipes] @ git+https://github.com/xiaohan-213/fissionkit"   # + scikit-learn for the applied recipes
 ```
+
+To pin a release, append its tag to the URL, e.g.
+`git+https://github.com/xiaohan-213/fissionkit@v0.2.0`.
 
 ## Quickstart
 
@@ -70,8 +72,8 @@ image, the scikit-learn diabetes study) and calibrated simulations
 elsewhere; `examples/audit_fission_diagnostic.py` regenerates the audit
 numbers quoted for the misspecified-scale diagnostic and the small-sample
 coverage of the estimated-scale mode. The example scripts need the `dev`
-extra (`pip install "fissionkit[dev]"`: scikit-learn, scikit-image,
-matplotlib, pytest).
+extra (scikit-learn, scikit-image, matplotlib, pytest); from a clone of the
+repository, run `pip install -e ".[dev]"`.
 
 ## Why not just sample-split?
 

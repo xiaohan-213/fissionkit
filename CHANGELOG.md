@@ -7,6 +7,17 @@ this project uses [Semantic Versioning](https://semver.org/).
 Entries describe user-visible behaviour: what changed, whether existing code
 or seeded results are affected, and what to do about it.
 
+## [0.2.0] — 2026-09-20
+
+First public release. No changes to the package outside the version string;
+`scripts/bytecode_diff.py` reports nothing that determines behaviour differs
+from 0.1.29.
+
+The 0.1.x entries below record the pre-release audit rounds, most of them
+dated the same day. None of them was tagged in this repository or published
+to PyPI; they are kept as a record of what was checked and fixed before
+publication. 0.2.0 is the first version intended for users.
+
 ## [0.1.29] — 2026-09-11
 
 Release-tooling fix. No changes to the package outside the version string;
