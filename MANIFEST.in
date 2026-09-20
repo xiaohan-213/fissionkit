@@ -1,0 +1,13 @@
+include LICENSE README.md CHANGELOG.md CITATION.cff CONTRIBUTING.md
+include src/fissionkit/py.typed
+recursive-include tests *.py
+recursive-include examples *.py
+
+# The manuscript and its figures belong to the repository, not to an
+# installable distribution: they are irrelevant to installation and would
+# multiply the size of the sdist.
+prune paper
+global-exclude *.pdf *.png
+global-exclude __pycache__ *.pyc
+prune build
+prune .github

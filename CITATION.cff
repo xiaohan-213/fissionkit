@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+type: software
+message: "If you use fissionkit, please cite the software and the method papers below."
+title: "fissionkit: data fission and data thinning in Python"
+version: 0.1.29
+license: MIT
+date-released: "2026-09-11"
+authors:
+  - family-names: "Han"
+    given-names: "Xiangnan"
+    affiliation: "Yantai Engineering & Technology College"
+    email: "xiaohan-213@163.com"
+    orcid: "https://orcid.org/0009-0003-5987-0908"
+repository-code: "https://github.com/xiaohan-213/fissionkit"
+references:
+  - type: article
+    title: "Data fission: splitting a single data point"
+    authors: [{family-names: Leiner, given-names: James}, {family-names: Duan, given-names: Boyan}, {family-names: Wasserman, given-names: Larry}, {family-names: Ramdas, given-names: Aaditya}]
+    journal: "Journal of the American Statistical Association"
+    year: 2025
+  - type: article
+    title: "Data thinning for convolution-closed distributions"
+    authors: [{family-names: Neufeld, given-names: Anna}, {family-names: Dharamshi, given-names: Ameer}, {family-names: Gao, given-names: Lucy L.}, {family-names: Witten, given-names: Daniela}]
+    journal: "Journal of Machine Learning Research"
+    volume: 25
+    year: 2024
+  - type: article
+    title: "Generalized data thinning using sufficient statistics"
+    authors: [{family-names: Dharamshi, given-names: Ameer}, {family-names: Neufeld, given-names: Anna}, {family-names: Motwani, given-names: Keshav}, {family-names: Gao, given-names: Lucy L.}, {family-names: Witten, given-names: Daniela}, {family-names: Bien, given-names: Jacob}]
+    journal: "Journal of the American Statistical Association"
+    year: 2025

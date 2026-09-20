@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fissionkit"
+dynamic = ["version"]
+description = "Data fission and data thinning for valid statistics after selection"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Xiangnan Han", email = "xiaohan-213@163.com"}]
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.22", "scipy>=1.8"]
+keywords = ["data thinning", "data fission", "selective inference",
+            "post-selection inference", "statistics"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[project.urls]
+Homepage = "https://github.com/xiaohan-213/fissionkit"
+Repository = "https://github.com/xiaohan-213/fissionkit"
+Changelog = "https://github.com/xiaohan-213/fissionkit/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+recipes = ["scikit-learn>=1.1"]
+dev = ["pytest>=7", "scikit-learn>=1.1", "scikit-image", "matplotlib", "mypy"]
+
+[tool.setuptools.dynamic]
+version = {attr = "fissionkit.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+fissionkit = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+ignore_missing_imports = true   # scikit-learn ships no stubs
+files = ["src/fissionkit"]
+
+[tool.ruff]
+target-version = "py39"
+
+[tool.ruff.lint.pyupgrade]
+# The public annotations are evaluated at runtime by the test suite
+# (typing.get_type_hints), and the package supports Python 3.9, where the
+# PEP 604 form 'X | None' cannot be evaluated.  Without this setting ruff
+# rewrites Optional[X] back to 'X | None' whenever
+# 'from __future__ import annotations' is present - which is exactly how
+# 0.1.7-0.1.11 came to ship signatures that failed on 3.9.
+keep-runtime-typing = true
