@@ -37,9 +37,9 @@ rm -rf src/*.egg-info   # left by the editable installs; with it present the
                         # installed-metadata test runs instead of skipping
 ```
 
-Expect "108 passed, 1 skipped" from a clean tree (the skipped test compares
+Expect "131 passed, 1 skipped" from a clean tree (the skipped test compares
 `__version__` with installed metadata and is exercised by `release.sh`), or
-"103 passed" if an install is visible. Record the outcome in
+"132 passed" if an install is visible. Record the outcome in
 `paper/versions.txt`. Releases 0.1.7-0.1.11 shipped PEP 604 signatures, so
 the annotation tests added in 0.1.8 could not have passed on Python 3.9, and
 no release before 0.1.12 records a run outside the reference environment:
@@ -114,39 +114,24 @@ largest eigenvalue) unless the property being tested is genuinely absolute
 between 0.1.11 and 0.1.13; a covariance in the data's own small units passed
 grossly indefinite. `tests/test_v0114_fixes.py` is the template.
 
-## Before the first public tag
+## Releasing
 
-Everything below is owned by the authors, not by the release checks:
+fissionkit is distributed from this repository and is not published to PyPI.
+Each release is a GitHub Release archived by Zenodo, which mints its DOI.
 
-1. Replace every placeholder: `pyproject.toml` (authors, URLs), `LICENSE`
-   (copyright line), `CITATION.cff` (authors, repository), `README.md`
-   (install URL) and in the manuscript the author block, Table 1 C2/C9,
-   Table 2 S2/S8, CRediT, competing interests, funding and the AI statement.
-   Copy `paper/submission.example.json` to `paper/submission.json`, fill it
-   in (remove the `_comment` key), and run `python scripts/fill_placeholders.py
-   --apply paper/submission.json`; the example file itself, or any value
-   left over from it (`example.org` addresses, the zero DOI or ORCID), is
-   refused. It writes all five files from that one source,
-   validates each written file (TOML parse, CITATION.cff via cffconvert or
-   PyYAML or a structural scan, well-formed document XML) and re-checks that
-   nothing is left (`--check` lists what remains at any time; `--self-test`
-   rejects nine malformed submissions - the example file itself and wrong
-   JSON types included - and applies ten, including names and affiliations
-   with backslashes, `\1`, `:`, `&`, `<` and non-ASCII letters, ORCID/DOI
-   given as URLs, values with surrounding whitespace and an affiliation
-   spelled two ways). Open the manuscript once afterwards.
-2. Decide the public version. The changelog records a run of same-day patch
-   releases from 0.1.11 onward (count the dates in `CHANGELOG.md`) because
-   each audit round shipped as a release; a reader of the repository will
-   not know that. Either keep the history as
-   it is, or squash it into a single `0.2.0` before the first push, and cite
-   that tag in Table 1, Table 2 and `CITATION.cff`.
-3. Push, and read the CI results for macOS and Windows: no release has been
-   run on either. Update the sentence in manuscript §2.1 that says the
-   matrix was run locally on Linux.
-4. Publish to PyPI (Table 2 S2), mint the Zenodo DOI for the tag (Table 1
-   C2), and record the library versions of that build in
-   `paper/versions.txt`.
+1. Set `__version__` in `src/fissionkit/__init__.py`, add the top
+   `CHANGELOG.md` entry `## [<version>] — <UTC date>`, and set `version` and
+   `date-released` in `CITATION.cff` to match. Run `scripts/release.sh` on
+   the same UTC day (see "Verification discipline" below).
+2. Push, and wait until every CI job is green on the commit to be tagged.
+3. Publish a GitHub Release with tag `v<version>` targeting that commit.
+   The Zenodo GitHub integration is enabled for this repository, so
+   publishing the Release archives the tagged tree and mints a DOI for it;
+   pushing a bare tag does not. Do this only after step 2: once Zenodo has
+   archived a tag, its files cannot be replaced.
+4. When the DOI is minted, set `doi` in `CITATION.cff` and point the README
+   badge at it, in a follow-up commit on `main`. This changes neither the
+   tag nor the Zenodo archive.
 
 ## Verification discipline
 

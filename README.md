@@ -43,14 +43,19 @@ To pin a release, append its tag to the URL, e.g.
 import numpy as np
 from fissionkit import thin, gaussian_fission
 
-X = np.random.default_rng(1).poisson(8.0, size=(500, 200))  # e.g. cells x genes
-folds = thin(X, "poisson", epsilon=[0.5, 0.5], random_state=1)
+rng = np.random.default_rng(1)                 # one stream for the data and the splits
+X = rng.poisson(8.0, size=(500, 200))          # e.g. cells x genes
+folds = thin(X, "poisson", epsilon=[0.5, 0.5], random_state=rng)
 train, test = folds[..., 0], folds[..., 1]     # independent, sum back to X
 
-y = np.random.default_rng(2).normal(1.0, 1.0, 300)
-f, g = gaussian_fission(y, sigma2=1.0, tau=1.0, random_state=2)
+y = rng.normal(1.0, 1.0, 300)
+f, g = gaussian_fission(y, sigma2=1.0, tau=1.0, random_state=rng)
 # select on f, infer on g - they are exactly independent
 ```
+
+The split must never reuse the seed that generated the data: the "external"
+noise of the split would then be the data's own noise (see
+[section 6.10 of the manual](USER_MANUAL.md#610-reproducibility)).
 
 Eight families are supported: `poisson`, `gaussian`, `mvgaussian`,
 `negative_binomial`, `binomial`, `gamma`, `exponential`, `chi_squared`,
@@ -58,6 +63,12 @@ with arbitrary numbers of folds and unequal allocations `epsilon`. Nuisance
 parameters (`sigma2`, `Sigma`, `size`, `n_trials`, `shape`) are validated for
 presence and value at call time. `poisson_fission` is provided for symmetry
 with the fission paper; for Poisson data fission and thinning coincide.
+
+## Documentation
+
+[USER_MANUAL.md](USER_MANUAL.md) covers installation, every function and its
+parameters, worked examples for each workflow, validation results and
+troubleshooting.
 
 ## The four applied workflows
 
