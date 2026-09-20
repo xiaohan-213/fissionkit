@@ -5,6 +5,7 @@ title: "fissionkit: data fission and data thinning in Python"
 version: 0.2.0
 license: MIT
 date-released: "2026-09-20"
+doi: 10.5281/zenodo.22853159
 authors:
   - family-names: "Han"
     given-names: "Xiangnan"

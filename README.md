@@ -1,5 +1,7 @@
 # fissionkit
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22853159.svg)](https://doi.org/10.5281/zenodo.22853159)
+
 **Data fission and data thinning for valid statistics after selection.**
 
 `fissionkit` splits a *single* observation — a count, a Gaussian measurement, a
